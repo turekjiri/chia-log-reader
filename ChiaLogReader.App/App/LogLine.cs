@@ -31,8 +31,13 @@ namespace ChiaLogReader.App.App
 
         private MessageType GetMessageType(string txt)
         {
+            var moddedTxt = txt.ToLower()
+                                .Replace(" ", "_")
+                                .Replace(",", "")
+                                .Replace("'", "");
+
             foreach (MessageType type in (MessageType[])Enum.GetValues(typeof(MessageType)))
-                if (txt.Contains(type.ToString()))
+                if (moddedTxt.Contains(type.ToString()))
                     return type;
 
             return MessageType.unknown;
@@ -88,6 +93,30 @@ namespace ChiaLogReader.App.App
         farming_info,
         eligible,
         peer,
-        add_spendbundle
+        add_spendbundle,
+        not_accepting_inbound_connection,
+        finished_signage_point,
+        updated_wallet_peak_to_height,
+        it_took,
+        added_unfinished_block,
+        updated_peak_to_height,
+        connection_closed,
+        dont_have_rc_hash,
+        not_added_cc_challenge,
+        duplicate_compact_proof,
+        consensus_error,
+        wasnt_able_to_add_transaction,
+        already_compactified_block,
+        dont_have_signage_point,
+        searching_directories,
+        loaded_a_total_of,
+        cannot_connect_to_host,
+        finished_sub_slot,
+        cannot_write_to_closing_transport,
+        connected_with_full_node,
+        received_orphan_block,
+        recent_chain,
+        index_from_challenge,
+        last_rc_infusion
     }
 }
